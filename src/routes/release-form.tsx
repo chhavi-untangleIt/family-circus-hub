@@ -12,9 +12,8 @@ import { usePortal } from "@/lib/portal-store";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/release-form")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    child: typeof search["child"] === "string" ? (search["child"] as string) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { child?: string } =>
+    typeof search["child"] === "string" ? { child: search["child"] as string } : {},
   head: () => ({
     meta: [
       { title: "General Release Form — CircEsteem" },
