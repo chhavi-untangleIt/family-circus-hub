@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
-import { Route as ChildrenRouteImport } from './routes/children'
 import { Route as ConfirmationRouteImport } from './routes/confirmation'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as FinancialAidRouteImport } from './routes/financial-aid'
@@ -22,6 +21,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as ReleaseFormRouteImport } from './routes/release-form'
+import { Route as ChildrenIndexRouteImport } from './routes/children.index'
 import { Route as ChildrenIdRouteImport } from './routes/children.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -42,11 +42,6 @@ const CartRoute = CartRouteImport.update({
 const CheckoutRoute = CheckoutRouteImport.update({
   id: '/checkout',
   path: '/checkout',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChildrenRoute = ChildrenRouteImport.update({
-  id: '/children',
-  path: '/children',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConfirmationRoute = ConfirmationRouteImport.update({
@@ -89,10 +84,15 @@ const ReleaseFormRoute = ReleaseFormRouteImport.update({
   path: '/release-form',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChildrenIndexRoute = ChildrenIndexRouteImport.update({
+  id: '/children/',
+  path: '/children/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChildrenIdRoute = ChildrenIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => ChildrenRoute,
+  id: '/children/$id',
+  path: '/children/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -100,7 +100,6 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
-  '/children': typeof ChildrenRouteWithChildren
   '/confirmation': typeof ConfirmationRoute
   '/dashboard': typeof DashboardRoute
   '/financial-aid': typeof FinancialAidRoute
@@ -110,13 +109,13 @@ export interface FileRoutesByFullPath {
   '/programs': typeof ProgramsRoute
   '/release-form': typeof ReleaseFormRoute
   '/children/$id': typeof ChildrenIdRoute
+  '/children/': typeof ChildrenIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
-  '/children': typeof ChildrenRouteWithChildren
   '/confirmation': typeof ConfirmationRoute
   '/dashboard': typeof DashboardRoute
   '/financial-aid': typeof FinancialAidRoute
@@ -126,6 +125,7 @@ export interface FileRoutesByTo {
   '/programs': typeof ProgramsRoute
   '/release-form': typeof ReleaseFormRoute
   '/children/$id': typeof ChildrenIdRoute
+  '/children': typeof ChildrenIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -133,7 +133,6 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
-  '/children': typeof ChildrenRouteWithChildren
   '/confirmation': typeof ConfirmationRoute
   '/dashboard': typeof DashboardRoute
   '/financial-aid': typeof FinancialAidRoute
@@ -143,6 +142,7 @@ export interface FileRoutesById {
   '/programs': typeof ProgramsRoute
   '/release-form': typeof ReleaseFormRoute
   '/children/$id': typeof ChildrenIdRoute
+  '/children/': typeof ChildrenIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -151,7 +151,6 @@ export interface FileRouteTypes {
     | '/account'
     | '/cart'
     | '/checkout'
-    | '/children'
     | '/confirmation'
     | '/dashboard'
     | '/financial-aid'
@@ -161,13 +160,13 @@ export interface FileRouteTypes {
     | '/programs'
     | '/release-form'
     | '/children/$id'
+    | '/children/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/account'
     | '/cart'
     | '/checkout'
-    | '/children'
     | '/confirmation'
     | '/dashboard'
     | '/financial-aid'
@@ -177,13 +176,13 @@ export interface FileRouteTypes {
     | '/programs'
     | '/release-form'
     | '/children/$id'
+    | '/children'
   id:
     | '__root__'
     | '/'
     | '/account'
     | '/cart'
     | '/checkout'
-    | '/children'
     | '/confirmation'
     | '/dashboard'
     | '/financial-aid'
@@ -193,6 +192,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/release-form'
     | '/children/$id'
+    | '/children/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -200,7 +200,6 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
-  ChildrenRoute: typeof ChildrenRouteWithChildren
   ConfirmationRoute: typeof ConfirmationRoute
   DashboardRoute: typeof DashboardRoute
   FinancialAidRoute: typeof FinancialAidRoute
@@ -209,6 +208,8 @@ export interface RootRouteChildren {
   OnboardingRoute: typeof OnboardingRoute
   ProgramsRoute: typeof ProgramsRoute
   ReleaseFormRoute: typeof ReleaseFormRoute
+  ChildrenIdRoute: typeof ChildrenIdRoute
+  ChildrenIndexRoute: typeof ChildrenIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -239,13 +240,6 @@ declare module '@tanstack/react-router' {
       path: '/checkout'
       fullPath: '/checkout'
       preLoaderRoute: typeof CheckoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/children': {
-      id: '/children'
-      path: '/children'
-      fullPath: '/children'
-      preLoaderRoute: typeof ChildrenRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/confirmation': {
@@ -304,34 +298,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReleaseFormRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/children/': {
+      id: '/children/'
+      path: '/children'
+      fullPath: '/children/'
+      preLoaderRoute: typeof ChildrenIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/children/$id': {
       id: '/children/$id'
-      path: '/$id'
+      path: '/children/$id'
       fullPath: '/children/$id'
       preLoaderRoute: typeof ChildrenIdRouteImport
-      parentRoute: typeof ChildrenRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface ChildrenRouteChildren {
-  ChildrenIdRoute: typeof ChildrenIdRoute
-}
-
-const ChildrenRouteChildren: ChildrenRouteChildren = {
-  ChildrenIdRoute: ChildrenIdRoute,
-}
-
-const ChildrenRouteWithChildren = ChildrenRoute._addFileChildren(
-  ChildrenRouteChildren,
-)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccountRoute: AccountRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
-  ChildrenRoute: ChildrenRouteWithChildren,
   ConfirmationRoute: ConfirmationRoute,
   DashboardRoute: DashboardRoute,
   FinancialAidRoute: FinancialAidRoute,
@@ -340,6 +328,8 @@ const rootRouteChildren: RootRouteChildren = {
   OnboardingRoute: OnboardingRoute,
   ProgramsRoute: ProgramsRoute,
   ReleaseFormRoute: ReleaseFormRoute,
+  ChildrenIdRoute: ChildrenIdRoute,
+  ChildrenIndexRoute: ChildrenIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
