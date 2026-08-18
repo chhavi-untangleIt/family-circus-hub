@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/children")({
+export const Route = createFileRoute("/children/")({
   component: ChildrenPage,
 });
 

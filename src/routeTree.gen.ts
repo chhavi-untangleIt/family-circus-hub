@@ -10,33 +10,205 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccountRouteImport } from './routes/account'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as ChildrenRouteImport } from './routes/children'
+import { Route as ConfirmationRouteImport } from './routes/confirmation'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as FinancialAidRouteImport } from './routes/financial-aid'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as ReleaseFormRouteImport } from './routes/release-form'
+import { Route as ChildrenIdRouteImport } from './routes/children.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChildrenRoute = ChildrenRouteImport.update({
+  id: '/children',
+  path: '/children',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfirmationRoute = ConfirmationRouteImport.update({
+  id: '/confirmation',
+  path: '/confirmation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinancialAidRoute = FinancialAidRouteImport.update({
+  id: '/financial-aid',
+  path: '/financial-aid',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgramsRoute = ProgramsRouteImport.update({
+  id: '/programs',
+  path: '/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReleaseFormRoute = ReleaseFormRouteImport.update({
+  id: '/release-form',
+  path: '/release-form',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChildrenIdRoute = ChildrenIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ChildrenRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/children': typeof ChildrenRouteWithChildren
+  '/confirmation': typeof ConfirmationRoute
+  '/dashboard': typeof DashboardRoute
+  '/financial-aid': typeof FinancialAidRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
+  '/programs': typeof ProgramsRoute
+  '/release-form': typeof ReleaseFormRoute
+  '/children/$id': typeof ChildrenIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/children': typeof ChildrenRouteWithChildren
+  '/confirmation': typeof ConfirmationRoute
+  '/dashboard': typeof DashboardRoute
+  '/financial-aid': typeof FinancialAidRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
+  '/programs': typeof ProgramsRoute
+  '/release-form': typeof ReleaseFormRoute
+  '/children/$id': typeof ChildrenIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/children': typeof ChildrenRouteWithChildren
+  '/confirmation': typeof ConfirmationRoute
+  '/dashboard': typeof DashboardRoute
+  '/financial-aid': typeof FinancialAidRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
+  '/programs': typeof ProgramsRoute
+  '/release-form': typeof ReleaseFormRoute
+  '/children/$id': typeof ChildrenIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/account'
+    | '/cart'
+    | '/checkout'
+    | '/children'
+    | '/confirmation'
+    | '/dashboard'
+    | '/financial-aid'
+    | '/forgot-password'
+    | '/login'
+    | '/onboarding'
+    | '/programs'
+    | '/release-form'
+    | '/children/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/account'
+    | '/cart'
+    | '/checkout'
+    | '/children'
+    | '/confirmation'
+    | '/dashboard'
+    | '/financial-aid'
+    | '/forgot-password'
+    | '/login'
+    | '/onboarding'
+    | '/programs'
+    | '/release-form'
+    | '/children/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/account'
+    | '/cart'
+    | '/checkout'
+    | '/children'
+    | '/confirmation'
+    | '/dashboard'
+    | '/financial-aid'
+    | '/forgot-password'
+    | '/login'
+    | '/onboarding'
+    | '/programs'
+    | '/release-form'
+    | '/children/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountRoute: typeof AccountRoute
+  CartRoute: typeof CartRoute
+  CheckoutRoute: typeof CheckoutRoute
+  ChildrenRoute: typeof ChildrenRouteWithChildren
+  ConfirmationRoute: typeof ConfirmationRoute
+  DashboardRoute: typeof DashboardRoute
+  FinancialAidRoute: typeof FinancialAidRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  LoginRoute: typeof LoginRoute
+  OnboardingRoute: typeof OnboardingRoute
+  ProgramsRoute: typeof ProgramsRoute
+  ReleaseFormRoute: typeof ReleaseFormRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +220,126 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/children': {
+      id: '/children'
+      path: '/children'
+      fullPath: '/children'
+      preLoaderRoute: typeof ChildrenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/confirmation': {
+      id: '/confirmation'
+      path: '/confirmation'
+      fullPath: '/confirmation'
+      preLoaderRoute: typeof ConfirmationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financial-aid': {
+      id: '/financial-aid'
+      path: '/financial-aid'
+      fullPath: '/financial-aid'
+      preLoaderRoute: typeof FinancialAidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programs': {
+      id: '/programs'
+      path: '/programs'
+      fullPath: '/programs'
+      preLoaderRoute: typeof ProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/release-form': {
+      id: '/release-form'
+      path: '/release-form'
+      fullPath: '/release-form'
+      preLoaderRoute: typeof ReleaseFormRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/children/$id': {
+      id: '/children/$id'
+      path: '/$id'
+      fullPath: '/children/$id'
+      preLoaderRoute: typeof ChildrenIdRouteImport
+      parentRoute: typeof ChildrenRoute
+    }
   }
 }
 
+interface ChildrenRouteChildren {
+  ChildrenIdRoute: typeof ChildrenIdRoute
+}
+
+const ChildrenRouteChildren: ChildrenRouteChildren = {
+  ChildrenIdRoute: ChildrenIdRoute,
+}
+
+const ChildrenRouteWithChildren = ChildrenRoute._addFileChildren(
+  ChildrenRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountRoute: AccountRoute,
+  CartRoute: CartRoute,
+  CheckoutRoute: CheckoutRoute,
+  ChildrenRoute: ChildrenRouteWithChildren,
+  ConfirmationRoute: ConfirmationRoute,
+  DashboardRoute: DashboardRoute,
+  FinancialAidRoute: FinancialAidRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  LoginRoute: LoginRoute,
+  OnboardingRoute: OnboardingRoute,
+  ProgramsRoute: ProgramsRoute,
+  ReleaseFormRoute: ReleaseFormRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
