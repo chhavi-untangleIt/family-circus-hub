@@ -63,10 +63,10 @@ export function ChildFormDialog({ open, onOpenChange, child }: Props) {
 
   const validate = () => {
     const next: Record<string, string> = {};
-    if (!form.firstName.trim()) next.firstName = "First name is required.";
-    if (!form.lastName.trim()) next.lastName = "Last name is required.";
-    if (!form.birthdate) next.birthdate = "Birthdate is required.";
-    if (form.grade === "") next.grade = "Grade is required.";
+    if (!form.firstName.trim()) next["firstName"] = "First name is required.";
+    if (!form.lastName.trim()) next["lastName"] = "Last name is required.";
+    if (!form.birthdate) next["birthdate"] = "Birthdate is required.";
+    if (form.grade === "") next["grade"] = "Grade is required.";
     setErrors(next);
     return Object.keys(next).length === 0;
   };
