@@ -173,7 +173,7 @@ function ReleaseFormPage() {
                 {acknowledgements.map((text, i) => (
                   <label key={text} className="flex items-start gap-3 rounded-xl bg-secondary p-3 text-sm text-primary">
                     <Checkbox
-                      checked={checks[i]}
+                      checked={checks[i] === true}
                       onCheckedChange={(v) =>
                         setChecks((prev) => prev.map((c, idx) => (idx === i ? v === true : c)))
                       }
