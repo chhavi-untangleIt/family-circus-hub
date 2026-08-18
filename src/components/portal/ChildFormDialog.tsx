@@ -119,34 +119,34 @@ export function ChildFormDialog({ open, onOpenChange, child }: Props) {
 
         <form onSubmit={submit} className="grid gap-5" noValidate>
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field id="firstName" label="First Name" required error={errors.firstName}>
+            <Field id="firstName" label="First Name" required error={errors["firstName"]}>
               <Input
                 id="firstName"
                 value={form.firstName}
                 onChange={(e) => set("firstName", e.target.value)}
-                aria-invalid={!!errors.firstName}
-                aria-describedby={errors.firstName ? "firstName-error" : undefined}
+                aria-invalid={!!errors["firstName"]}
+                aria-describedby={errors["firstName"] ? "firstName-error" : undefined}
               />
             </Field>
-            <Field id="lastName" label="Last Name" required error={errors.lastName}>
+            <Field id="lastName" label="Last Name" required error={errors["lastName"]}>
               <Input
                 id="lastName"
                 value={form.lastName}
                 onChange={(e) => set("lastName", e.target.value)}
-                aria-invalid={!!errors.lastName}
-                aria-describedby={errors.lastName ? "lastName-error" : undefined}
+                aria-invalid={!!errors["lastName"]}
+                aria-describedby={errors["lastName"] ? "lastName-error" : undefined}
               />
             </Field>
-            <Field id="birthdate" label="Birthdate" required error={errors.birthdate}>
+            <Field id="birthdate" label="Birthdate" required error={errors["birthdate"]}>
               <Input
                 id="birthdate"
                 type="date"
                 value={form.birthdate}
                 onChange={(e) => set("birthdate", e.target.value)}
-                aria-invalid={!!errors.birthdate}
+                aria-invalid={!!errors["birthdate"]}
               />
             </Field>
-            <Field id="grade" label="Grade" required error={errors.grade}>
+            <Field id="grade" label="Grade" required error={errors["grade"]}>
               <Select value={form.grade} onValueChange={(v) => set("grade", v)}>
                 <SelectTrigger id="grade" className="h-11">
                   <SelectValue placeholder="Select grade" />
@@ -269,8 +269,8 @@ function Field({
 }: {
   id: string;
   label: string;
-  required?: boolean;
-  error?: string;
+  required?: boolean | undefined;
+  error?: string | undefined;
   children: React.ReactNode;
 }) {
   return (
